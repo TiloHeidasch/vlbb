@@ -1,6 +1,6 @@
-<h1 mat-dialog-title>Anlegen</h1>
+<h1 mat-dialog-title>Mitarbeiter</h1>
 <div mat-dialog-content>
-    <mat-form-field >
+    <mat-form-field style="width:100%">
   <mat-label>Name</mat-label>
   <input matInput type="text" [(ngModel)]="mitarbeiter.mitarbeiterName">
   <button *ngIf="mitarbeiter.mitarbeiterName" matSuffix mat-icon-button aria-label="Clear" (click)="mitarbeiter.mitarbeiterName=''">
@@ -8,34 +8,45 @@
   </button>
 </mat-form-field>
 
-  <p>Verfuegbarkeiten</p>
   <mat-list>
     <mat-list-item>
-        Mo: <app-mitarbeiter-dialog-tag-verfuegbarkeit [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.mo" (verfuegbarkeitvalueChange)="mitarbeiter.tagverfuegbarkeit.mo=$event" />
+      <div style="display: flex; width: 100%; justify-content: space-between; align-items:center">
+        <span style="margin-right: 1rem;">Mo:</span><app-mitarbeiter-dialog-tag-verfuegbarkeit [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.mo" (verfuegbarkeitvalueChange)="mitarbeiter.tagverfuegbarkeit.mo=$event" />
+        </div>
     </mat-list-item>
     <mat-list-item>
-        Di: <app-mitarbeiter-dialog-tag-verfuegbarkeit [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.di" (verfuegbarkeitvalueChange)="mitarbeiter.tagverfuegbarkeit.di=$event" />
+      <div style="display: flex; width: 100%; justify-content: space-between; align-items:center">
+        <span style="margin-right: 1rem;">Di:</span><app-mitarbeiter-dialog-tag-verfuegbarkeit [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.di" (verfuegbarkeitvalueChange)="mitarbeiter.tagverfuegbarkeit.di=$event" />
+        </div>
     </mat-list-item>
     <mat-list-item>
-        Mi: <app-mitarbeiter-dialog-tag-verfuegbarkeit [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.mi" (verfuegbarkeitvalueChange)="mitarbeiter.tagverfuegbarkeit.mi=$event" />
+      <div style="display: flex; width: 100%; justify-content: space-between; align-items:center">
+        <span style="margin-right: 1rem;">Mi:</span><app-mitarbeiter-dialog-tag-verfuegbarkeit [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.mi" (verfuegbarkeitvalueChange)="mitarbeiter.tagverfuegbarkeit.mi=$event" />
+        </div>
     </mat-list-item>
     <mat-list-item>
-        Do: <app-mitarbeiter-dialog-tag-verfuegbarkeit [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.do" (verfuegbarkeitvalueChange)="mitarbeiter.tagverfuegbarkeit.do=$event" />
+      <div style="display: flex; width: 100%; justify-content: space-between; align-items:center">
+        <span style="margin-right: 1rem;">Do:</span><app-mitarbeiter-dialog-tag-verfuegbarkeit [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.do" (verfuegbarkeitvalueChange)="mitarbeiter.tagverfuegbarkeit.do=$event" />
+        </div>
     </mat-list-item>
     <mat-list-item>
-        Fr: <app-mitarbeiter-dialog-tag-verfuegbarkeit [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.fr" (verfuegbarkeitvalueChange)="mitarbeiter.tagverfuegbarkeit.fr=$event" />
+      <div style="display: flex; width: 100%; justify-content: space-between; align-items:center">
+        <span style="margin-right: 1rem;">Fr:</span><app-mitarbeiter-dialog-tag-verfuegbarkeit [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.fr" (verfuegbarkeitvalueChange)="mitarbeiter.tagverfuegbarkeit.fr=$event" />
+        </div>
     </mat-list-item>
     <mat-list-item>
-        Sa: <app-mitarbeiter-dialog-tag-verfuegbarkeit [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.sa" (verfuegbarkeitvalueChange)="mitarbeiter.tagverfuegbarkeit.sa=$event" />
+      <div style="display: flex; width: 100%; justify-content: space-between; align-items:center">
+        <span style="margin-right: 1rem;">Sa:</span><app-mitarbeiter-dialog-tag-verfuegbarkeit [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.sa" (verfuegbarkeitvalueChange)="mitarbeiter.tagverfuegbarkeit.sa=$event" />
+        </div>
     </mat-list-item>
     <mat-list-item>
-        So: <app-mitarbeiter-dialog-tag-verfuegbarkeit [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.so" (verfuegbarkeitvalueChange)="mitarbeiter.tagverfuegbarkeit.so=$event" />
-    </mat-list-item>
-    <mat-list-item>
+      <div style="display: flex; width: 100%; justify-content: space-between; align-items:center">
+        <span style="margin-right: 1rem;">So:</span><app-mitarbeiter-dialog-tag-verfuegbarkeit [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.so" (verfuegbarkeitvalueChange)="mitarbeiter.tagverfuegbarkeit.so=$event" />
+        </div>
     </mat-list-item>
   </mat-list>
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions style="display: flex; justify-content: end;">
   <button mat-button (click)="onNoClick()">Abbrechen</button>
   <button mat-button [mat-dialog-close]="mitarbeiter" cdkFocusInitial>OK</button>
 </div>

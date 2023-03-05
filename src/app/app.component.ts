@@ -88,8 +88,10 @@ export class AppComponent {
     });
 
     dialogRefCreate.afterClosed().subscribe((mitarbeiter) => {
-      this.mitarbeiterListe.push(mitarbeiter);
-      this.berechneBeide();
+      if (mitarbeiter) {
+        this.mitarbeiterListe.push(mitarbeiter);
+        this.berechneBeide();
+      }
     });
   }
   openEditDialog(mitarbeiter: Mitarbeiter): void {
