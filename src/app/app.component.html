@@ -69,7 +69,7 @@
         </button>
 </div>
 <mat-toolbar color="primary">
-<span>Ohne Zwang</span>
+<span>Nur <mat-icon style="color: green;">done_all</mat-icon></span>
 </mat-toolbar>
 <table #planTable mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -123,7 +123,7 @@
   <tr mat-row *matRowDef="let row; columns: schichtDisplayedColumns;"></tr>
 </table>
 <mat-toolbar color="primary">
-<span>Mit Zwang</span>
+<span><mat-icon style="color: green;">done_all</mat-icon> und <mat-icon style="color: orange;">done</mat-icon></span>
 </mat-toolbar>
 <table #planZwangTable mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
