@@ -101,7 +101,8 @@ export class AppComponent {
 
     dialogRefEdit.afterClosed().subscribe((mitarbeiter) => {
       if (mitarbeiter) {
-        this.mitarbeiterListe[mitarbeiter.id] = mitarbeiter;
+        const index = this.mitarbeiterListe.findIndex((othermitarbeiter)=>othermitarbeiter.id===mitarbeiter.id)
+        this.mitarbeiterListe[index] = mitarbeiter;
         this.berechneBeide();
       }
     });
@@ -136,43 +137,43 @@ export class AppComponent {
     ) {
       const mitarbeiter = this.mitarbeiterListe[mitarbeiterIndex];
       let planAnzahl = 0;
-      if (plan[0].search(mitarbeiter.mitarbeiterName) > -1) {
+      if (plan[0].search(mitarbeiter.id) > -1) {
         mitarbeiter.tagSchicht.mo = 'JA';
         planAnzahl = planAnzahl + 1;
       } else {
         mitarbeiter.tagSchicht.mo = 'NEIN';
       }
-      if (plan[1].search(mitarbeiter.mitarbeiterName) > -1) {
+      if (plan[1].search(mitarbeiter.id) > -1) {
         mitarbeiter.tagSchicht.di = 'JA';
         planAnzahl = planAnzahl + 1;
       } else {
         mitarbeiter.tagSchicht.di = 'NEIN';
       }
-      if (plan[2].search(mitarbeiter.mitarbeiterName) > -1) {
+      if (plan[2].search(mitarbeiter.id) > -1) {
         mitarbeiter.tagSchicht.mi = 'JA';
         planAnzahl = planAnzahl + 1;
       } else {
         mitarbeiter.tagSchicht.mi = 'NEIN';
       }
-      if (plan[3].search(mitarbeiter.mitarbeiterName) > -1) {
+      if (plan[3].search(mitarbeiter.id) > -1) {
         mitarbeiter.tagSchicht.do = 'JA';
         planAnzahl = planAnzahl + 1;
       } else {
         mitarbeiter.tagSchicht.do = 'NEIN';
       }
-      if (plan[4].search(mitarbeiter.mitarbeiterName) > -1) {
+      if (plan[4].search(mitarbeiter.id) > -1) {
         mitarbeiter.tagSchicht.fr = 'JA';
         planAnzahl = planAnzahl + 1;
       } else {
         mitarbeiter.tagSchicht.fr = 'NEIN';
       }
-      if (plan[5].search(mitarbeiter.mitarbeiterName) > -1) {
+      if (plan[5].search(mitarbeiter.id) > -1) {
         mitarbeiter.tagSchicht.sa = 'JA';
         planAnzahl = planAnzahl + 1;
       } else {
         mitarbeiter.tagSchicht.sa = 'NEIN';
       }
-      if (plan[6].search(mitarbeiter.mitarbeiterName) > -1) {
+      if (plan[6].search(mitarbeiter.id) > -1) {
         mitarbeiter.tagSchicht.so = 'JA';
         planAnzahl = planAnzahl + 1;
       } else {
@@ -180,50 +181,53 @@ export class AppComponent {
       }
       mitarbeiter.tagSchichtAnzahl = planAnzahl;
       let zwangPlanAnzahl = 0;
-      if (zwangPlan[0].search(mitarbeiter.mitarbeiterName) > -1) {
+      if (zwangPlan[0].search(mitarbeiter.id) > -1) {
         mitarbeiter.tagSchichtZwang.mo = 'JA';
         zwangPlanAnzahl = zwangPlanAnzahl + 1;
       } else {
         mitarbeiter.tagSchichtZwang.mo = 'NEIN';
       }
-      if (zwangPlan[1].search(mitarbeiter.mitarbeiterName) > -1) {
+      if (zwangPlan[1].search(mitarbeiter.id) > -1) {
         mitarbeiter.tagSchichtZwang.di = 'JA';
         zwangPlanAnzahl = zwangPlanAnzahl + 1;
       } else {
         mitarbeiter.tagSchichtZwang.di = 'NEIN';
       }
-      if (zwangPlan[2].search(mitarbeiter.mitarbeiterName) > -1) {
+      if (zwangPlan[2].search(mitarbeiter.id) > -1) {
         mitarbeiter.tagSchichtZwang.mi = 'JA';
         zwangPlanAnzahl = zwangPlanAnzahl + 1;
       } else {
         mitarbeiter.tagSchichtZwang.mi = 'NEIN';
       }
-      if (zwangPlan[3].search(mitarbeiter.mitarbeiterName) > -1) {
+      if (zwangPlan[3].search(mitarbeiter.id) > -1) {
         mitarbeiter.tagSchichtZwang.do = 'JA';
         zwangPlanAnzahl = zwangPlanAnzahl + 1;
       } else {
         mitarbeiter.tagSchichtZwang.do = 'NEIN';
       }
-      if (zwangPlan[4].search(mitarbeiter.mitarbeiterName) > -1) {
+      if (zwangPlan[4].search(mitarbeiter.id) > -1) {
         mitarbeiter.tagSchichtZwang.fr = 'JA';
         zwangPlanAnzahl = zwangPlanAnzahl + 1;
       } else {
         mitarbeiter.tagSchichtZwang.fr = 'NEIN';
       }
-      if (zwangPlan[5].search(mitarbeiter.mitarbeiterName) > -1) {
+      if (zwangPlan[5].search(mitarbeiter.id) > -1) {
         mitarbeiter.tagSchichtZwang.sa = 'JA';
         zwangPlanAnzahl = zwangPlanAnzahl + 1;
       } else {
         mitarbeiter.tagSchichtZwang.sa = 'NEIN';
       }
-      if (zwangPlan[6].search(mitarbeiter.mitarbeiterName) > -1) {
+      if (zwangPlan[6].search(mitarbeiter.id) > -1) {
         mitarbeiter.tagSchichtZwang.so = 'JA';
         zwangPlanAnzahl = zwangPlanAnzahl + 1;
       } else {
         mitarbeiter.tagSchichtZwang.so = 'NEIN';
       }
       mitarbeiter.tagSchichtZwangAnzahl = zwangPlanAnzahl;
-      this.mitarbeiterListe[mitarbeiter.id] = mitarbeiter;
+        const index = this.mitarbeiterListe.findIndex(
+          (othermitarbeiter) => othermitarbeiter.id === mitarbeiter.id
+        );
+        this.mitarbeiterListe[index] = mitarbeiter;
     }
     this.updateMitarbeiter();
   }
@@ -356,11 +360,9 @@ export class AppComponent {
           const occurencesOld: any[] = [];
           const occurencesNew: any[] = [];
           this.mitarbeiterListe.forEach((mitarbeiter) => {
-            const name = mitarbeiter.mitarbeiterName;
-            if (name !== '') {
+            const name = mitarbeiter.id;
               occurencesOld.push(this.occurrences(planOld, name));
               occurencesNew.push(this.occurrences(planNew, name));
-            }
           });
 
           const bandbreiteAlt =
@@ -488,7 +490,7 @@ export class AppComponent {
               if (!zwang && verfuegbarkeit === 'GEHT') {
                 throw new Error('Nicht verfügbar');
               }
-              plan = plan + mitarbeiter.mitarbeiterName + ',';
+              plan = plan + mitarbeiter.id + ',';
             }
           }
           moeglichePlaene.push(plan);
@@ -522,7 +524,7 @@ export class AppComponent {
 }
 
 export interface Mitarbeiter {
-  id: number;
+  id: string;
   mitarbeiterName: string;
   tagverfuegbarkeit: Tage;
   tagSchicht: Tage;
