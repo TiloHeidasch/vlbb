@@ -1,0 +1,6 @@
+<mat-button-toggle-group name="verfuegbarkeit"  >
+  <mat-button-toggle [checked]="verfuegbarkeit==='OKAY'" (click)="click('OKAY')">OKAY</mat-button-toggle>
+  <mat-button-toggle [checked]="verfuegbarkeit==='GEHT'" (click)="click('GEHT')">GEHT</mat-button-toggle>
+  <mat-button-toggle [checked]="verfuegbarkeit==='VLLT'" (click)="click('VLLT')">VLLT</mat-button-toggle>
+  <mat-button-toggle [checked]="verfuegbarkeit==='NEIN'" (click)="click('NEIN')">NEIN</mat-button-toggle>
+</mat-button-toggle-group>

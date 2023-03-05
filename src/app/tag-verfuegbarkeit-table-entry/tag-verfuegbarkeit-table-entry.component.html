@@ -1,0 +1,14 @@
+<span [ngSwitch]="verfuegbarkeit">
+<p *ngSwitchCase="'OKAY'">
+    <mat-icon style="color: green;">done_all</mat-icon>
+</p>
+<p *ngSwitchCase="'GEHT'">
+    <mat-icon style="color: orange;">done</mat-icon>
+</p>
+<p *ngSwitchCase="'VLLT'">
+    <mat-icon style="color: orangered;">block</mat-icon>
+</p>
+<p *ngSwitchCase="'NEIN'">
+    <mat-icon style="color: darkred;">cancel</mat-icon>
+</p>
+</span>

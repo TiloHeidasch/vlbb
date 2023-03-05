@@ -1,0 +1,48 @@
+name: Build Page
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: NPM Install
+        run: npm ci
+      - name: Setup Angular
+        run: npm install @angular/cli
+      - name: Build
+        run: npm run build:prod
+      - name: tar www Artifact
+        run: tar -cvf www.tar www/
+      - name: Safe www Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: www
+          path: www.tar
+  pages:
+    name: Create Github Page
+    runs-on: ubuntu-latest
+    needs: [ build ]
+    if: github.ref == 'refs/heads/master'
+    steps:
+    - name: Download www
+      uses: actions/download-artifact@v2.0.5
+      with:
+        name: www
+        path: ./
+    - name: Untar www
+      run: tar -xvf www.tar
+    - name: GitHub Pages
+      uses: crazy-max/ghaction-github-pages@v2.3.0
+      with:
+        build_dir: www/
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+ 
