@@ -218,7 +218,7 @@ export class AppComponent {
       } else {
         mitarbeiter.tagSchichtZwang.so = 'NEIN';
       }
-      mitarbeiter.tagSchichtAnzahl = zwangPlanAnzahl;
+      mitarbeiter.tagSchichtZwangAnzahl = zwangPlanAnzahl;
       this.mitarbeiterListe[mitarbeiter.id] = mitarbeiter;
     }
     this.updateMitarbeiter();
