@@ -100,8 +100,10 @@ export class AppComponent {
     });
 
     dialogRefEdit.afterClosed().subscribe((mitarbeiter) => {
-      this.mitarbeiterListe[mitarbeiter.id] = mitarbeiter;
-      this.berechneBeide();
+      if (mitarbeiter) {
+        this.mitarbeiterListe[mitarbeiter.id] = mitarbeiter;
+        this.berechneBeide();
+      }
     });
   }
   deleteMitarbeiter(mitarbeiter: Mitarbeiter) {
