@@ -18,7 +18,7 @@ jobs:
       - name: Setup Angular
         run: npm install @angular/cli
       - name: Build
-        run: npm run build:prod
+        run: npm run build
       - name: tar www Artifact
         run: tar -cvf www.tar www/
       - name: Safe www Artifact
