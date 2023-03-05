@@ -20,7 +20,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: tar dist Artifact
-        run: tar -cvf dist.tar dist/
+        run: tar -cvf dist.tar dist/vl-big-blocks-schichtplanung/
       - name: Safe dist Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
