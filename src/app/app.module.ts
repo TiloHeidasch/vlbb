@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { DayAvailabilitySelectorComponent } from './day-availability-selector/day-availability-selector.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../material.module';
 import { MitarbeiterDialogComponent } from './mitarbeiter-dialog/mitarbeiter-dialog.component';
@@ -14,7 +13,6 @@ import { TagEingeplantTableEntryComponent } from './tag-eingeplant-table-entry/t
 @NgModule({
   declarations: [
     AppComponent,
-    DayAvailabilitySelectorComponent,
     MitarbeiterDialogComponent,
     CreateMitarbeiterDialogTagVerfuegbarkeitComponent,
     TagVerfuegbarkeitTableEntryComponent,

@@ -1,6 +1,6 @@
 <mat-button-toggle-group name="verfuegbarkeit"  >
-  <mat-button-toggle [checked]="verfuegbarkeit==='OKAY'" (click)="click('OKAY')">OKAY</mat-button-toggle>
-  <mat-button-toggle [checked]="verfuegbarkeit==='GEHT'" (click)="click('GEHT')">GEHT</mat-button-toggle>
-  <mat-button-toggle [checked]="verfuegbarkeit==='VLLT'" (click)="click('VLLT')">VLLT</mat-button-toggle>
-  <mat-button-toggle [checked]="verfuegbarkeit==='NEIN'" (click)="click('NEIN')">NEIN</mat-button-toggle>
+  <mat-button-toggle [checked]="verfuegbarkeit==='OKAY'" (click)="click('OKAY')"><mat-icon style="color: green;">done_all</mat-icon></mat-button-toggle>
+  <mat-button-toggle [checked]="verfuegbarkeit==='GEHT'" (click)="click('GEHT')"><mat-icon style="color: orange;">done</mat-icon></mat-button-toggle>
+  <mat-button-toggle [checked]="verfuegbarkeit==='VLLT'" (click)="click('VLLT')"><mat-icon style="color: orangered;">block</mat-icon></mat-button-toggle>
+  <mat-button-toggle [checked]="verfuegbarkeit==='NEIN'" (click)="click('NEIN')"><mat-icon style="color: darkred;">cancel</mat-icon></mat-button-toggle>
 </mat-button-toggle-group>

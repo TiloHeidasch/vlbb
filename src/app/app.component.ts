@@ -84,8 +84,6 @@ export class AppComponent {
     });
 
     dialogRefCreate.afterClosed().subscribe((mitarbeiter) => {
-      console.log('The dialog was closed');
-      console.log({ mitarbeiter });
       this.mitarbeiterListe.push(mitarbeiter);
       this.berechneBeide();
     });
@@ -96,8 +94,6 @@ export class AppComponent {
     });
 
     dialogRefEdit.afterClosed().subscribe((mitarbeiter) => {
-      console.log('The dialog was closed');
-      console.log({ mitarbeiter });
 
       this.mitarbeiterListe[mitarbeiter.id] = mitarbeiter;
       this.berechneBeide();
@@ -129,7 +125,6 @@ export class AppComponent {
       mitarbeiterIndex++
     ) {
       const mitarbeiter = this.mitarbeiterListe[mitarbeiterIndex];
-      console.log(plan[0].search(mitarbeiter.mitarbeiterName));
       let planAnzahl = 0;
       if (plan[0].search(mitarbeiter.mitarbeiterName) > -1) {
         mitarbeiter.tagSchicht.mo = 'JA';
@@ -230,16 +225,6 @@ export class AppComponent {
     const moeglichePlaeneFr = this.getMoeglichePlaene('fr', zwang);
     const moeglichePlaeneSa = this.getMoeglichePlaene('sa', zwang);
     const moeglichePlaeneSo = this.getMoeglichePlaene('so', zwang);
-    console.log({
-      zwang,
-      moeglichePlaeneMo,
-      moeglichePlaeneDi,
-      moeglichePlaeneMi,
-      moeglichePlaeneDo,
-      moeglichePlaeneFr,
-      moeglichePlaeneSa,
-      moeglichePlaeneSo,
-    });
     const randomPlan: string[] = [];
     randomPlan.push(
       moeglichePlaeneMo[
@@ -306,19 +291,6 @@ export class AppComponent {
     moeglichePlaeneSo: string[],
     bisherigerBester: string[]
   ): string[] {
-    console.log('berechneBestenPlan');
-    console.log({
-      moeglichePlaeneMo,
-      moeglichePlaeneDi,
-      moeglichePlaeneMi,
-      moeglichePlaeneDo,
-      moeglichePlaeneFr,
-      moeglichePlaeneSa,
-      moeglichePlaeneSo,
-      bisherigerBester,
-    });
-
-    //Logger.log(JSON.stringify({currentBestPlan, uniques, moMax, diMax, miMax, doMax, frMax, saMax, soMax,names}));
     const backupPlan = this.copyPlan(bisherigerBester);
     let newPlan: string[] = [];
     try {
@@ -428,17 +400,12 @@ export class AppComponent {
               medAvgDeltaSame &&
               firstQuartDistSame &&
               thirdQuartDistEval);
-          //Logger.log(JSON.stringify({eval,bandbreiteEval,wennMussEval,medAvgDeltaEval,firstQuartDistEval,thirdQuartDistEval,occurencesOld,occurencesNew,bandbreiteAlt,bandbreiteNeu,wennmussAlt,wennmussNeu,medAvgDeltaAlt,medAvgDeltaNeu,firstQuartDistAlt,firstQuartDistNeu,thirdQuartDistAlt,thirdQuartDistNeu}))
           if (evals) {
-            //console.log('foundNewPlan');
             throw new Error('foundNewPlan');
           }
         }
       }
     } catch (error) {
-      // a better plan was found
-      //console.log(error);
-      //console.log('a better plan was found');
       try {
         return this.berechneBestenPlan(
           moeglichePlaeneMo,
