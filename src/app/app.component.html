@@ -1,7 +1,7 @@
 <mat-toolbar color="accent">
 <span>VL Bigblocks - Schichtplanung</span>
 </mat-toolbar>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table #verfuegbarkeitTable mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <ng-container matColumnDef="Name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -67,7 +67,7 @@
 <mat-toolbar color="primary">
 <span>Ohne Zwang</span>
 </mat-toolbar>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table #planTable mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <ng-container matColumnDef="Name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -121,7 +121,7 @@
 <mat-toolbar color="primary">
 <span>Mit Zwang</span>
 </mat-toolbar>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table #planZwangTable mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <ng-container matColumnDef="Name">
     <th mat-header-cell *matHeaderCellDef> Name </th>

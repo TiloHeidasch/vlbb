@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTable } from '@angular/material/table';
 import { MitarbeiterDialogComponent } from './mitarbeiter-dialog/mitarbeiter-dialog.component';
 
 @Component({
@@ -8,6 +9,9 @@ import { MitarbeiterDialogComponent } from './mitarbeiter-dialog/mitarbeiter-dia
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  @ViewChild('verfuegbarkeitTable') verfuegbarkeitTable: MatTable<Mitarbeiter>;
+  @ViewChild('planTable') planTable: MatTable<Mitarbeiter>;
+  @ViewChild('planZwangTable') planZwangTable: MatTable<Mitarbeiter>;
   verfuegbarkeitDisplayedColumns: string[] = [
     'Name',
     'Mo',
@@ -94,7 +98,6 @@ export class AppComponent {
     });
 
     dialogRefEdit.afterClosed().subscribe((mitarbeiter) => {
-
       this.mitarbeiterListe[mitarbeiter.id] = mitarbeiter;
       this.berechneBeide();
     });
@@ -112,6 +115,9 @@ export class AppComponent {
       JSON.stringify(this.mitarbeiterListe)
     );
     this.changeDetectorRefs.detectChanges();
+    this.verfuegbarkeitTable.renderRows();
+    this.planTable.renderRows();
+    this.planZwangTable.renderRows();
   }
   berechneBeide() {
     const plan = this.berechnePlan(false);
