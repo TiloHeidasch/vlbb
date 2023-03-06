@@ -21,7 +21,6 @@ export class AppComponent {
     'Fr',
     'Sa',
     'So',
-    'Edit',
     'Delete',
   ];
   dataSource: Mitarbeiter[];
@@ -96,12 +95,46 @@ export class AppComponent {
   }
   openEditDialog(mitarbeiter: Mitarbeiter): void {
     const dialogRefEdit = this.dialog.open(MitarbeiterDialogComponent, {
-      data: mitarbeiter,
+      data: {
+        id: mitarbeiter.id + '',
+        mitarbeiterName: mitarbeiter.mitarbeiterName + '',
+        tagverfuegbarkeit: {
+          mo: mitarbeiter.tagverfuegbarkeit.mo + '',
+          di: mitarbeiter.tagverfuegbarkeit.di + '',
+          mi: mitarbeiter.tagverfuegbarkeit.mi + '',
+          do: mitarbeiter.tagverfuegbarkeit.do + '',
+          fr: mitarbeiter.tagverfuegbarkeit.fr + '',
+          sa: mitarbeiter.tagverfuegbarkeit.sa + '',
+          so: mitarbeiter.tagverfuegbarkeit.so + '',
+        },
+        tagSchicht: {
+          mo: mitarbeiter.tagSchicht.mo + '',
+          di: mitarbeiter.tagSchicht.di + '',
+          mi: mitarbeiter.tagSchicht.mi + '',
+          do: mitarbeiter.tagSchicht.do + '',
+          fr: mitarbeiter.tagSchicht.fr + '',
+          sa: mitarbeiter.tagSchicht.sa + '',
+          so: mitarbeiter.tagSchicht.so + '',
+        },
+        tagSchichtAnzahl: 0 + mitarbeiter.tagSchichtAnzahl,
+        tagSchichtZwang: {
+          mo: mitarbeiter.tagSchichtZwang.mo + '',
+          di: mitarbeiter.tagSchichtZwang.di + '',
+          mi: mitarbeiter.tagSchichtZwang.mi + '',
+          do: mitarbeiter.tagSchichtZwang.do + '',
+          fr: mitarbeiter.tagSchichtZwang.fr + '',
+          sa: mitarbeiter.tagSchichtZwang.sa + '',
+          so: mitarbeiter.tagSchichtZwang.so + '',
+        },
+        tagSchichtZwangAnzahl: 0 + mitarbeiter.tagSchichtZwangAnzahl,
+      },
     });
 
     dialogRefEdit.afterClosed().subscribe((mitarbeiter) => {
       if (mitarbeiter) {
-        const index = this.mitarbeiterListe.findIndex((othermitarbeiter)=>othermitarbeiter.id===mitarbeiter.id)
+        const index = this.mitarbeiterListe.findIndex(
+          (othermitarbeiter) => othermitarbeiter.id === mitarbeiter.id
+        );
         this.mitarbeiterListe[index] = mitarbeiter;
         this.berechneBeide();
       }
@@ -224,10 +257,10 @@ export class AppComponent {
         mitarbeiter.tagSchichtZwang.so = 'NEIN';
       }
       mitarbeiter.tagSchichtZwangAnzahl = zwangPlanAnzahl;
-        const index = this.mitarbeiterListe.findIndex(
-          (othermitarbeiter) => othermitarbeiter.id === mitarbeiter.id
-        );
-        this.mitarbeiterListe[index] = mitarbeiter;
+      const index = this.mitarbeiterListe.findIndex(
+        (othermitarbeiter) => othermitarbeiter.id === mitarbeiter.id
+      );
+      this.mitarbeiterListe[index] = mitarbeiter;
     }
     this.updateMitarbeiter();
   }
@@ -361,8 +394,8 @@ export class AppComponent {
           const occurencesNew: any[] = [];
           this.mitarbeiterListe.forEach((mitarbeiter) => {
             const name = mitarbeiter.id;
-              occurencesOld.push(this.occurrences(planOld, name));
-              occurencesNew.push(this.occurrences(planNew, name));
+            occurencesOld.push(this.occurrences(planOld, name));
+            occurencesNew.push(this.occurrences(planNew, name));
           });
 
           const bandbreiteAlt =
