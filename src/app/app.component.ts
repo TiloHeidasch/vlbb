@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { MitarbeiterDialogComponent } from './mitarbeiter-dialog/mitarbeiter-dialog.component';
+import { NgxCaptureService } from 'ngx-capture';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +14,7 @@ export class AppComponent {
   @ViewChild('verfuegbarkeitTable') verfuegbarkeitTable: MatTable<Mitarbeiter>;
   @ViewChild('planTable') planTable: MatTable<Mitarbeiter>;
   @ViewChild('planZwangTable') planZwangTable: MatTable<Mitarbeiter>;
+  @ViewChild('screen', { static: true }) screen: any;
   verfuegbarkeitDisplayedColumns: string[] = [
     'Name',
     'Mo',
@@ -38,7 +41,8 @@ export class AppComponent {
   mitarbeiterListe: Mitarbeiter[];
   constructor(
     public dialog: MatDialog,
-    private changeDetectorRefs: ChangeDetectorRef
+    private changeDetectorRefs: ChangeDetectorRef,
+    private captureService: NgxCaptureService
   ) {
     const storedVal = localStorage.getItem('mitarbeiterListe');
     if (storedVal) {
@@ -48,7 +52,50 @@ export class AppComponent {
     }
     this.dataSource = this.mitarbeiterListe;
   }
+  screenshot() {
+    this.captureService
+      .getImage(this.screen.nativeElement, true)
+      .pipe(
+        tap((img) => {
+          console.log({ img });
+          const contentType = img.split(',')[0];
+          const b64Data = img.split(',')[1];
+          console.log({ img, contentType, b64Data });
+          const blob = this.b64toBlob(b64Data, contentType);
+          const blobUrl = URL.createObjectURL(blob);
+          var anchor = document.createElement('a');
+          const dateString = new Date()
+            .toLocaleString('de')
+            .replaceAll(',', '_')
+            .replaceAll(':', '_')
+            .replaceAll(' ', '_');
+          const filename = 'VL_BigBlocks_Schichtplan_' + dateString + '.png';
+          anchor.download = filename;
+          anchor.href = blobUrl;
+          anchor.click();
+        })
+      )
+      .subscribe();
+  }
+  b64toBlob = (b64Data: string, contentType = '', sliceSize = 512) => {
+    const byteCharacters = atob(b64Data);
+    const byteArrays = [];
 
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+      const byteNumbers = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+
+    const blob = new Blob(byteArrays, { type: contentType });
+    return blob;
+  };
   openCreateDialog(): void {
     const dialogRefCreate = this.dialog.open(MitarbeiterDialogComponent, {
       data: {

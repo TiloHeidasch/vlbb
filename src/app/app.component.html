@@ -61,14 +61,17 @@
 </table>
 
 <div style=" display: flex; justify-content: center; margin: 1rem;">
-<button style="margin-right: 1rem;" mat-mini-fab (click)="openCreateDialog()" >
+<button style="margin-right: 1rem;margin-left: 1rem;" mat-mini-fab (click)="openCreateDialog()" >
 <mat-icon>add</mat-icon>
 </button>
-
-        <button style="margin-left: 1rem;" mat-mini-fab color="primary" (click)="berechneBeide()">
+        <button style="margin-right: 1rem;margin-left: 1rem;" mat-mini-fab color="primary" (click)="berechneBeide()">
           <mat-icon>refresh</mat-icon>
         </button>
+        <button style="margin-right: 1rem;margin-left: 1rem;" mat-mini-fab color="warn" (click)="screenshot()">
+          <mat-icon>event_available</mat-icon>
+        </button>
 </div>
+<div class="results" #screen>
 <mat-toolbar color="primary">
 <span>Nur <mat-icon style="color: green;">done_all</mat-icon></span>
 </mat-toolbar>
@@ -177,3 +180,4 @@
   <tr mat-header-row *matHeaderRowDef="schichtDisplayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: schichtDisplayedColumns;"></tr>
 </table>
+</div>

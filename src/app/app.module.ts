@@ -9,6 +9,7 @@ import { MitarbeiterDialogComponent } from './mitarbeiter-dialog/mitarbeiter-dia
 import { CreateMitarbeiterDialogTagVerfuegbarkeitComponent } from './mitarbeiter-dialog-tag-verfuegbarkeit/mitarbeiter-dialog-tag-verfuegbarkeit.component';
 import { TagVerfuegbarkeitTableEntryComponent } from './tag-verfuegbarkeit-table-entry/tag-verfuegbarkeit-table-entry.component';
 import { TagEingeplantTableEntryComponent } from './tag-eingeplant-table-entry/tag-eingeplant-table-entry.component';
+import { NgxCaptureModule } from 'ngx-capture';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { TagEingeplantTableEntryComponent } from './tag-eingeplant-table-entry/t
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
+    NgxCaptureModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
