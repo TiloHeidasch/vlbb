@@ -1,57 +1,73 @@
 <mat-toolbar color="accent">
-<span>VL Bigblocks - Schichtplanung</span>
+  <span>VL Bigblocks - Schichtplanung</span>
 </mat-toolbar>
 <table #verfuegbarkeitTable mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <ng-container matColumnDef="Name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let mitarbeiter" >
-    <button style="width:90%; margin-left: 5%;" mat-stroked-button  (click)="openEditDialog(mitarbeiter)">{{mitarbeiter.mitarbeiterName}}</button></td>
+    <td mat-cell *matCellDef="let mitarbeiter">
+      <button style="width:90%; margin-left: 5%;" mat-stroked-button
+        (click)="openEditDialog(mitarbeiter)">{{mitarbeiter.mitarbeiterName}}</button>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="Mo">
     <th mat-header-cell *matHeaderCellDef> Mo </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-verfuegbarkeit-table-entry [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.mo"/> </td>
+    <td mat-cell *matCellDef="let mitarbeiter">
+      <app-tag-verfuegbarkeit-table-entry [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.mo" />
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="Di">
     <th mat-header-cell *matHeaderCellDef> Di </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-verfuegbarkeit-table-entry [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.di"/> </td>
+    <td mat-cell *matCellDef="let mitarbeiter">
+      <app-tag-verfuegbarkeit-table-entry [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.di" />
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="Mi">
     <th mat-header-cell *matHeaderCellDef> Mi </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-verfuegbarkeit-table-entry [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.mi"/> </td>
+    <td mat-cell *matCellDef="let mitarbeiter">
+      <app-tag-verfuegbarkeit-table-entry [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.mi" />
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="Do">
     <th mat-header-cell *matHeaderCellDef> Do </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-verfuegbarkeit-table-entry [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.do"/> </td>
+    <td mat-cell *matCellDef="let mitarbeiter">
+      <app-tag-verfuegbarkeit-table-entry [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.do" />
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="Fr">
     <th mat-header-cell *matHeaderCellDef> Fr </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-verfuegbarkeit-table-entry [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.fr"/> </td>
+    <td mat-cell *matCellDef="let mitarbeiter">
+      <app-tag-verfuegbarkeit-table-entry [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.fr" />
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="Sa">
     <th mat-header-cell *matHeaderCellDef> Sa </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-verfuegbarkeit-table-entry [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.sa"/> </td>
+    <td mat-cell *matCellDef="let mitarbeiter">
+      <app-tag-verfuegbarkeit-table-entry [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.sa" />
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="So">
     <th mat-header-cell *matHeaderCellDef> So </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-verfuegbarkeit-table-entry [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.so"/> </td>
+    <td mat-cell *matCellDef="let mitarbeiter">
+      <app-tag-verfuegbarkeit-table-entry [verfuegbarkeit]="mitarbeiter.tagverfuegbarkeit.so" />
+    </td>
   </ng-container>
   <ng-container matColumnDef="Edit">
-    <th mat-header-cell *matHeaderCellDef>  </th>
-    <td mat-cell *matCellDef="let mitarbeiter">       <button (click)="openEditDialog(mitarbeiter)" mat-icon-button >
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let mitarbeiter"> <button (click)="openEditDialog(mitarbeiter)" mat-icon-button>
         <mat-icon>edit</mat-icon>
       </button> </td>
   </ng-container>
   <ng-container matColumnDef="Delete">
-    <th mat-header-cell *matHeaderCellDef>  </th>
-    <td mat-cell *matCellDef="let mitarbeiter">       <button (click)="deleteMitarbeiter(mitarbeiter)" mat-icon-button >
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let mitarbeiter"> <button (click)="deleteMitarbeiter(mitarbeiter)" mat-icon-button>
         <mat-icon color="warn">delete_forever</mat-icon>
       </button> </td>
   </ng-container>
@@ -61,123 +77,162 @@
 </table>
 
 <div style=" display: flex; justify-content: center; margin: 1rem;">
-<button style="margin-right: 1rem;margin-left: 1rem;" mat-mini-fab (click)="openCreateDialog()" >
-<mat-icon>add</mat-icon>
-</button>
-        <button style="margin-right: 1rem;margin-left: 1rem;" mat-mini-fab color="primary" (click)="berechneBeide()">
-          <mat-icon>refresh</mat-icon>
-        </button>
-        <button style="margin-right: 1rem;margin-left: 1rem;" mat-mini-fab color="warn" (click)="screenshot()">
-          <mat-icon>event_available</mat-icon>
-        </button>
+  <button style="margin-right: 1rem;margin-left: 1rem;" mat-mini-fab (click)="openCreateDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+  <button style="margin-right: 1rem;margin-left: 1rem;" mat-mini-fab color="primary" (click)="berechneBeide()">
+    <mat-icon>refresh</mat-icon>
+  </button>
+  <button style="margin-right: 1rem;margin-left: 1rem;" mat-mini-fab color="warn" (click)="screenshot()">
+    <mat-icon>event_available</mat-icon>
+  </button>
+  <div style="margin-right: 1rem;margin-left: 1rem;display:flex;align-items: center;">
+    <span >
+      <mat-icon style="color: green;">done_all</mat-icon>
+    </span>
+  <mat-slide-toggle style="margin-left: 0.5rem;margin-right: 0.5rem;" color="primary" [(ngModel)]="zwang">
+  </mat-slide-toggle>
+    <span>
+      <mat-icon style="color: green;">done_all</mat-icon>/<mat-icon style="color: orange;">done</mat-icon>
+    </span>
+  </div>
 </div>
 <div class="results" #screen>
-<mat-toolbar color="primary">
-<span>Nur <mat-icon style="color: green;">done_all</mat-icon></span>
-</mat-toolbar>
-<table #planTable mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <mat-toolbar color="primary">
+      <span>Schichtplan</span>
+    </mat-toolbar>
+  <div #ohnezwang *ngIf="!zwang">
+    <table #planTable mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-  <ng-container matColumnDef="Name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> {{mitarbeiter.mitarbeiterName}} </td>
-  </ng-container>
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let mitarbeiter"> {{mitarbeiter.mitarbeiterName}} </td>
+      </ng-container>
 
-  <ng-container matColumnDef="Mo">
-    <th mat-header-cell *matHeaderCellDef> Mo </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.mo"/> </td>
-  </ng-container>
+      <ng-container matColumnDef="Mo">
+        <th mat-header-cell *matHeaderCellDef> Mo </th>
+        <td mat-cell *matCellDef="let mitarbeiter">
+          <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.mo" />
+        </td>
+      </ng-container>
 
-  <ng-container matColumnDef="Di">
-    <th mat-header-cell *matHeaderCellDef> Di </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.di"/> </td>
-  </ng-container>
+      <ng-container matColumnDef="Di">
+        <th mat-header-cell *matHeaderCellDef> Di </th>
+        <td mat-cell *matCellDef="let mitarbeiter">
+          <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.di" />
+        </td>
+      </ng-container>
 
-  <ng-container matColumnDef="Mi">
-    <th mat-header-cell *matHeaderCellDef> Mi </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.mi"/> </td>
-  </ng-container>
+      <ng-container matColumnDef="Mi">
+        <th mat-header-cell *matHeaderCellDef> Mi </th>
+        <td mat-cell *matCellDef="let mitarbeiter">
+          <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.mi" />
+        </td>
+      </ng-container>
 
-  <ng-container matColumnDef="Do">
-    <th mat-header-cell *matHeaderCellDef> Do </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.do"/> </td>
-  </ng-container>
+      <ng-container matColumnDef="Do">
+        <th mat-header-cell *matHeaderCellDef> Do </th>
+        <td mat-cell *matCellDef="let mitarbeiter">
+          <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.do" />
+        </td>
+      </ng-container>
 
-  <ng-container matColumnDef="Fr">
-    <th mat-header-cell *matHeaderCellDef> Fr </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.fr"/> </td>
-  </ng-container>
+      <ng-container matColumnDef="Fr">
+        <th mat-header-cell *matHeaderCellDef> Fr </th>
+        <td mat-cell *matCellDef="let mitarbeiter">
+          <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.fr" />
+        </td>
+      </ng-container>
 
-  <ng-container matColumnDef="Sa">
-    <th mat-header-cell *matHeaderCellDef> Sa </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.sa"/> </td>
-  </ng-container>
+      <ng-container matColumnDef="Sa">
+        <th mat-header-cell *matHeaderCellDef> Sa </th>
+        <td mat-cell *matCellDef="let mitarbeiter">
+          <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.sa" />
+        </td>
+      </ng-container>
 
-  <ng-container matColumnDef="So">
-    <th mat-header-cell *matHeaderCellDef> So </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.so"/> </td>
-  </ng-container>
+      <ng-container matColumnDef="So">
+        <th mat-header-cell *matHeaderCellDef> So </th>
+        <td mat-cell *matCellDef="let mitarbeiter">
+          <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.so" />
+        </td>
+      </ng-container>
 
-  <ng-container matColumnDef="Anzahl">
-    <th mat-header-cell *matHeaderCellDef> Σ </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> {{mitarbeiter.tagSchichtAnzahl}} </td>
-  </ng-container>
-
-
-  <tr mat-header-row *matHeaderRowDef="schichtDisplayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: schichtDisplayedColumns;"></tr>
-</table>
-<mat-toolbar color="primary">
-<span><mat-icon style="color: green;">done_all</mat-icon> und <mat-icon style="color: orange;">done</mat-icon></span>
-</mat-toolbar>
-<table #planZwangTable mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-  <ng-container matColumnDef="Name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> {{mitarbeiter.mitarbeiterName}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="Mo">
-    <th mat-header-cell *matHeaderCellDef> Mo </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.mo"/> </td>
-  </ng-container>
-
-  <ng-container matColumnDef="Di">
-    <th mat-header-cell *matHeaderCellDef> Di </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.di"/> </td>
-  </ng-container>
-
-  <ng-container matColumnDef="Mi">
-    <th mat-header-cell *matHeaderCellDef> Mi </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.mi"/> </td>
-  </ng-container>
-
-  <ng-container matColumnDef="Do">
-    <th mat-header-cell *matHeaderCellDef> Do </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.do"/> </td>
-  </ng-container>
-
-  <ng-container matColumnDef="Fr">
-    <th mat-header-cell *matHeaderCellDef> Fr </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.fr"/> </td>
-  </ng-container>
-
-  <ng-container matColumnDef="Sa">
-    <th mat-header-cell *matHeaderCellDef> Sa </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.sa"/> </td>
-  </ng-container>
-
-  <ng-container matColumnDef="So">
-    <th mat-header-cell *matHeaderCellDef> So </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.so"/> </td>
-  </ng-container>
-
-  <ng-container matColumnDef="Anzahl">
-    <th mat-header-cell *matHeaderCellDef> Σ </th>
-    <td mat-cell *matCellDef="let mitarbeiter"> {{mitarbeiter.tagSchichtZwangAnzahl}} </td>
-  </ng-container>
+      <ng-container matColumnDef="Anzahl">
+        <th mat-header-cell *matHeaderCellDef> Σ </th>
+        <td mat-cell *matCellDef="let mitarbeiter"> {{mitarbeiter.tagSchichtAnzahl}} </td>
+      </ng-container>
 
 
-  <tr mat-header-row *matHeaderRowDef="schichtDisplayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: schichtDisplayedColumns;"></tr>
-</table>
+      <tr mat-header-row *matHeaderRowDef="schichtDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: schichtDisplayedColumns;"></tr>
+    </table>
+  </div>
+  <div #mitzwang *ngIf="zwang">
+    <table #planZwangTable mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let mitarbeiter"> {{mitarbeiter.mitarbeiterName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Mo">
+        <th mat-header-cell *matHeaderCellDef> Mo </th>
+        <td mat-cell *matCellDef="let mitarbeiter">
+          <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.mo" />
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Di">
+        <th mat-header-cell *matHeaderCellDef> Di </th>
+        <td mat-cell *matCellDef="let mitarbeiter">
+          <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.di" />
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Mi">
+        <th mat-header-cell *matHeaderCellDef> Mi </th>
+        <td mat-cell *matCellDef="let mitarbeiter">
+          <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.mi" />
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Do">
+        <th mat-header-cell *matHeaderCellDef> Do </th>
+        <td mat-cell *matCellDef="let mitarbeiter">
+          <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.do" />
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Fr">
+        <th mat-header-cell *matHeaderCellDef> Fr </th>
+        <td mat-cell *matCellDef="let mitarbeiter">
+          <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.fr" />
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Sa">
+        <th mat-header-cell *matHeaderCellDef> Sa </th>
+        <td mat-cell *matCellDef="let mitarbeiter">
+          <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.sa" />
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="So">
+        <th mat-header-cell *matHeaderCellDef> So </th>
+        <td mat-cell *matCellDef="let mitarbeiter">
+          <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.so" />
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Anzahl">
+        <th mat-header-cell *matHeaderCellDef> Σ </th>
+        <td mat-cell *matCellDef="let mitarbeiter"> {{mitarbeiter.tagSchichtZwangAnzahl}} </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="schichtDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: schichtDisplayedColumns;"></tr>
+    </table>
+  </div>
 </div>

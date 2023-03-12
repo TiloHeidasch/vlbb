@@ -15,6 +15,7 @@ export class AppComponent {
   @ViewChild('planTable') planTable: MatTable<Mitarbeiter>;
   @ViewChild('planZwangTable') planZwangTable: MatTable<Mitarbeiter>;
   @ViewChild('screen', { static: true }) screen: any;
+  zwang: boolean = false;
   verfuegbarkeitDisplayedColumns: string[] = [
     'Name',
     'Mo',
