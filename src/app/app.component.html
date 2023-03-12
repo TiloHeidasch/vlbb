@@ -102,7 +102,7 @@
       <span>Schichtplan</span>
     </mat-toolbar>
   <div #ohnezwang *ngIf="!zwang">
-    <table #planTable mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table #planTable mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="padding-left: 0.5rem;padding-right: 0.5rem;">
 
       <ng-container matColumnDef="Name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -169,7 +169,7 @@
     </table>
   </div>
   <div #mitzwang *ngIf="zwang">
-    <table #planZwangTable mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table #planZwangTable mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="padding-left: 0.5rem;padding-right: 0.5rem;">
 
       <ng-container matColumnDef="Name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
