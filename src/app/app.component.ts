@@ -52,11 +52,53 @@ export class AppComponent {
     private changeDetectorRefs: ChangeDetectorRef,
     private captureService: NgxCaptureService
   ) {
-    const storedVal = localStorage.getItem('mitarbeiterListe');
-    if (storedVal) {
-      this.mitarbeiterListe = JSON.parse(storedVal);
+    const storedMitarbeiterVal = localStorage.getItem('mitarbeiterListe');
+    if (storedMitarbeiterVal) {
+      this.mitarbeiterListe = JSON.parse(storedMitarbeiterVal);
     } else {
       this.mitarbeiterListe = [];
+    }
+    const storedMoLockVal = localStorage.getItem('moLock');
+    if (storedMoLockVal) {
+      this.moLock = JSON.parse(storedMoLockVal);
+    } else {
+      this.moLock = false;
+    }
+    const storedDiLockVal = localStorage.getItem('diLock');
+    if (storedDiLockVal) {
+      this.diLock = JSON.parse(storedDiLockVal);
+    } else {
+      this.diLock = false;
+    }
+    const storedMiLockVal = localStorage.getItem('miLock');
+    if (storedMiLockVal) {
+      this.miLock = JSON.parse(storedMiLockVal);
+    } else {
+      this.miLock = false;
+    }
+    const storedDoLockVal = localStorage.getItem('doLock');
+    if (storedDoLockVal) {
+      this.doLock = JSON.parse(storedDoLockVal);
+    } else {
+      this.doLock = false;
+    }
+    const storedFrLockVal = localStorage.getItem('frLock');
+    if (storedFrLockVal) {
+      this.frLock = JSON.parse(storedFrLockVal);
+    } else {
+      this.frLock = false;
+    }
+    const storedSaLockVal = localStorage.getItem('saLock');
+    if (storedSaLockVal) {
+      this.saLock = JSON.parse(storedSaLockVal);
+    } else {
+      this.saLock = false;
+    }
+    const storedSoLockVal = localStorage.getItem('soLock');
+    if (storedSoLockVal) {
+      this.soLock = JSON.parse(storedSoLockVal);
+    } else {
+      this.soLock = false;
     }
     this.dataSource = this.mitarbeiterListe;
   }
@@ -147,6 +189,40 @@ export class AppComponent {
         this.berechneBeide();
       }
     });
+  }
+  toggle(lock: string) {
+    switch (lock) {
+      case 'mo':
+        this.moLock = !this.moLock;
+        localStorage.setItem('moLock', JSON.stringify(this.moLock));
+        break;
+      case 'di':
+        this.diLock = !this.diLock;
+        localStorage.setItem('diLock', JSON.stringify(this.diLock));
+        break;
+      case 'mi':
+        this.miLock = !this.miLock;
+        localStorage.setItem('miLock', JSON.stringify(this.miLock));
+        break;
+      case 'do':
+        this.doLock = !this.doLock;
+        localStorage.setItem('doLock', JSON.stringify(this.doLock));
+        break;
+      case 'fr':
+        this.frLock = !this.frLock;
+        localStorage.setItem('frLock', JSON.stringify(this.frLock));
+        break;
+      case 'sa':
+        this.saLock = !this.saLock;
+        localStorage.setItem('saLock', JSON.stringify(this.saLock));
+        break;
+      case 'so':
+        this.soLock = !this.soLock;
+        localStorage.setItem('soLock', JSON.stringify(this.soLock));
+        break;
+      default:
+        break;
+    }
   }
   openEditDialog(mitarbeiter: Mitarbeiter): void {
     const dialogRefEdit = this.dialog.open(MitarbeiterDialogComponent, {
