@@ -19,7 +19,7 @@ export class AppComponent {
   moLock: boolean = false;
   diLock: boolean = false;
   miLock: boolean = false;
-  doLock: boolean = true;
+  doLock: boolean = false;
   frLock: boolean = false;
   saLock: boolean = false;
   soLock: boolean = false;
