@@ -16,6 +16,13 @@ export class AppComponent {
   @ViewChild('planZwangTable') planZwangTable: MatTable<Mitarbeiter>;
   @ViewChild('screen', { static: true }) screen: any;
   zwang: boolean = false;
+  moLock: boolean = false;
+  diLock: boolean = false;
+  miLock: boolean = false;
+  doLock: boolean = true;
+  frLock: boolean = false;
+  saLock: boolean = false;
+  soLock: boolean = false;
   verfuegbarkeitDisplayedColumns: string[] = [
     'Name',
     'Mo',
@@ -202,12 +209,17 @@ export class AppComponent {
     );
     this.changeDetectorRefs.detectChanges();
     this.verfuegbarkeitTable.renderRows();
-    this.planTable.renderRows();
-    this.planZwangTable.renderRows();
+    try {
+      this.planTable.renderRows();
+    } catch (error) {}
+    try {
+      this.planZwangTable.renderRows();
+    } catch (error) {}
   }
   berechneBeide() {
-    const plan = this.berechnePlan(false);
-    const zwangPlan = this.berechnePlan(true);
+    const { plan: oldPlan, zwangPlan: oldZwangPlan } = this.unmapPlan();
+    const plan = this.berechnePlan(false, oldPlan);
+    const zwangPlan = this.berechnePlan(true, oldZwangPlan);
     this.mapPlan(plan, zwangPlan);
   }
   mapPlan(plan: string[], zwangPlan: string[]) {
@@ -312,14 +324,68 @@ export class AppComponent {
     }
     this.updateMitarbeiter();
   }
-  berechnePlan(zwang: boolean) {
-    const moeglichePlaeneMo = this.getMoeglichePlaene('mo', zwang);
-    const moeglichePlaeneDi = this.getMoeglichePlaene('di', zwang);
-    const moeglichePlaeneMi = this.getMoeglichePlaene('mi', zwang);
-    const moeglichePlaeneDo = this.getMoeglichePlaene('do', zwang);
-    const moeglichePlaeneFr = this.getMoeglichePlaene('fr', zwang);
-    const moeglichePlaeneSa = this.getMoeglichePlaene('sa', zwang);
-    const moeglichePlaeneSo = this.getMoeglichePlaene('so', zwang);
+  unmapPlan(): { plan: string[]; zwangPlan: string[] } {
+    const plan = ['', '', '', '', '', '', ''];
+    const zwangPlan = ['', '', '', '', '', '', ''];
+    for (
+      let mitarbeiterIndex = 0;
+      mitarbeiterIndex < this.mitarbeiterListe.length;
+      mitarbeiterIndex++
+    ) {
+      const mitarbeiter = this.mitarbeiterListe[mitarbeiterIndex];
+      if (mitarbeiter.tagSchicht.mo === 'JA') {
+        plan[0] = plan[0] + mitarbeiter.id + ',';
+      }
+      if (mitarbeiter.tagSchichtZwang.mo === 'JA') {
+        zwangPlan[0] = zwangPlan[0] + mitarbeiter.id + ',';
+      }
+      if (mitarbeiter.tagSchicht.di === 'JA') {
+        plan[1] = plan[1] + mitarbeiter.id + ',';
+      }
+      if (mitarbeiter.tagSchichtZwang.di === 'JA') {
+        zwangPlan[1] = zwangPlan[1] + mitarbeiter.id + ',';
+      }
+      if (mitarbeiter.tagSchicht.mi === 'JA') {
+        plan[2] = plan[2] + mitarbeiter.id + ',';
+      }
+      if (mitarbeiter.tagSchichtZwang.mi === 'JA') {
+        zwangPlan[2] = zwangPlan[2] + mitarbeiter.id + ',';
+      }
+      if (mitarbeiter.tagSchicht.do === 'JA') {
+        plan[3] = plan[3] + mitarbeiter.id + ',';
+      }
+      if (mitarbeiter.tagSchichtZwang.do === 'JA') {
+        zwangPlan[3] = zwangPlan[3] + mitarbeiter.id + ',';
+      }
+      if (mitarbeiter.tagSchicht.fr === 'JA') {
+        plan[4] = plan[4] + mitarbeiter.id + ',';
+      }
+      if (mitarbeiter.tagSchichtZwang.fr === 'JA') {
+        zwangPlan[4] = zwangPlan[4] + mitarbeiter.id + ',';
+      }
+      if (mitarbeiter.tagSchicht.sa === 'JA') {
+        plan[5] = plan[5] + mitarbeiter.id + ',';
+      }
+      if (mitarbeiter.tagSchichtZwang.sa === 'JA') {
+        zwangPlan[5] = zwangPlan[5] + mitarbeiter.id + ',';
+      }
+      if (mitarbeiter.tagSchicht.so === 'JA') {
+        plan[6] = plan[6] + mitarbeiter.id + ',';
+      }
+      if (mitarbeiter.tagSchichtZwang.so === 'JA') {
+        zwangPlan[6] = zwangPlan[6] + mitarbeiter.id + ',';
+      }
+    }
+    return { plan, zwangPlan };
+  }
+  berechnePlan(zwang: boolean, oldPlan: string[]) {
+    const moeglichePlaeneMo = this.getMoeglichePlaene('mo', zwang, oldPlan);
+    const moeglichePlaeneDi = this.getMoeglichePlaene('di', zwang, oldPlan);
+    const moeglichePlaeneMi = this.getMoeglichePlaene('mi', zwang, oldPlan);
+    const moeglichePlaeneDo = this.getMoeglichePlaene('do', zwang, oldPlan);
+    const moeglichePlaeneFr = this.getMoeglichePlaene('fr', zwang, oldPlan);
+    const moeglichePlaeneSa = this.getMoeglichePlaene('sa', zwang, oldPlan);
+    const moeglichePlaeneSo = this.getMoeglichePlaene('so', zwang, oldPlan);
     const randomPlan: string[] = [];
     randomPlan.push(
       moeglichePlaeneMo[
@@ -520,8 +586,36 @@ export class AppComponent {
     // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
-  getMoeglichePlaene(tag: string, zwang: boolean): string[] {
+  getMoeglichePlaene(tag: string, zwang: boolean, oldPlan: string[]): string[] {
     const moeglichePlaene = [];
+    if (this.moLock && tag === 'mo') {
+      moeglichePlaene.push(oldPlan[0]);
+      return moeglichePlaene;
+    }
+    if (this.diLock && tag === 'di') {
+      moeglichePlaene.push(oldPlan[1]);
+      return moeglichePlaene;
+    }
+    if (this.miLock && tag === 'mi') {
+      moeglichePlaene.push(oldPlan[2]);
+      return moeglichePlaene;
+    }
+    if (this.doLock && tag === 'do') {
+      moeglichePlaene.push(oldPlan[3]);
+      return moeglichePlaene;
+    }
+    if (this.frLock && tag === 'fr') {
+      moeglichePlaene.push(oldPlan[4]);
+      return moeglichePlaene;
+    }
+    if (this.saLock && tag === 'sa') {
+      moeglichePlaene.push(oldPlan[5]);
+      return moeglichePlaene;
+    }
+    if (this.soLock && tag === 'so') {
+      moeglichePlaene.push(oldPlan[6]);
+      return moeglichePlaene;
+    }
     const anzahlKombinatorik = Math.pow(2, this.mitarbeiterListe.length);
     const maxBin = (anzahlKombinatorik - 1).toString(2);
     for (let index = 0; index < anzahlKombinatorik; index++) {

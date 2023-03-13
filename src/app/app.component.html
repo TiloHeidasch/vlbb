@@ -87,22 +87,23 @@
     <mat-icon>event_available</mat-icon>
   </button>
   <div style="margin-right: 1rem;margin-left: 1rem;display:flex;align-items: center;">
-    <span >
+    <span>
       <mat-icon style="color: green;">done_all</mat-icon>
     </span>
-  <mat-slide-toggle style="margin-left: 0.5rem;margin-right: 0.5rem;" color="primary" [(ngModel)]="zwang">
-  </mat-slide-toggle>
+    <mat-slide-toggle style="margin-left: 0.5rem;margin-right: 0.5rem;" color="primary" [(ngModel)]="zwang">
+    </mat-slide-toggle>
     <span>
       <mat-icon style="color: green;">done_all</mat-icon>/<mat-icon style="color: orange;">done</mat-icon>
     </span>
   </div>
 </div>
 <div class="results" #screen>
-    <mat-toolbar color="primary">
-      <span>Schichtplan</span>
-    </mat-toolbar>
+  <mat-toolbar color="primary">
+    <span>Schichtplan</span>
+  </mat-toolbar>
   <div #ohnezwang *ngIf="!zwang">
-    <table #planTable mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="padding-left: 0.5rem;padding-right: 0.5rem;">
+    <table #planTable mat-table [dataSource]="dataSource" class="mat-elevation-z8"
+      style="padding-left: 0.5rem;padding-right: 0.5rem;">
 
       <ng-container matColumnDef="Name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -110,49 +111,98 @@
       </ng-container>
 
       <ng-container matColumnDef="Mo">
-        <th mat-header-cell *matHeaderCellDef> Mo </th>
+        <th mat-header-cell *matHeaderCellDef>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button color="warn" (click)="moLock=!moLock"
+            *ngIf="moLock">
+            <mat-icon style="margin: 0;">lock</mat-icon>
+          </button>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button (click)="moLock=!moLock"
+            *ngIf="!moLock">Mo</button>
+        </th>
         <td mat-cell *matCellDef="let mitarbeiter">
           <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.mo" />
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Di">
-        <th mat-header-cell *matHeaderCellDef> Di </th>
+        <th mat-header-cell *matHeaderCellDef>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button color="warn" (click)="diLock=!diLock"
+            *ngIf="diLock">
+            <mat-icon style="margin: 0;">lock</mat-icon>
+          </button>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button (click)="diLock=!diLock"
+            *ngIf="!diLock">Di</button>
+        </th>
         <td mat-cell *matCellDef="let mitarbeiter">
           <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.di" />
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Mi">
-        <th mat-header-cell *matHeaderCellDef> Mi </th>
+        <th mat-header-cell *matHeaderCellDef>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button color="warn" (click)="miLock=!miLock"
+            *ngIf="miLock">
+            <mat-icon style="margin: 0;">lock</mat-icon>
+          </button>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button (click)="miLock=!miLock"
+            *ngIf="!miLock">Mi</button>
+        </th>
         <td mat-cell *matCellDef="let mitarbeiter">
           <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.mi" />
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Do">
-        <th mat-header-cell *matHeaderCellDef> Do </th>
+        <th mat-header-cell *matHeaderCellDef>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button color="warn" (click)="doLock=!doLock"
+            *ngIf="doLock">
+            <mat-icon style="margin: 0;">lock</mat-icon>
+          </button>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button (click)="doLock=!doLock"
+            *ngIf="!doLock">Do</button>
+        </th>
         <td mat-cell *matCellDef="let mitarbeiter">
           <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.do" />
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Fr">
-        <th mat-header-cell *matHeaderCellDef> Fr </th>
+        <th mat-header-cell *matHeaderCellDef>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button color="warn" (click)="frLock=!frLock"
+            *ngIf="frLock">
+            <mat-icon style="margin: 0;">lock</mat-icon>
+          </button>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button (click)="frLock=!frLock"
+            *ngIf="!frLock">Fr</button>
+        </th>
         <td mat-cell *matCellDef="let mitarbeiter">
           <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.fr" />
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Sa">
-        <th mat-header-cell *matHeaderCellDef> Sa </th>
+        <th mat-header-cell *matHeaderCellDef>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button color="warn" (click)="saLock=!saLock"
+            *ngIf="saLock">
+            <mat-icon style="margin: 0;">lock</mat-icon>
+          </button>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button (click)="saLock=!saLock"
+            *ngIf="!saLock">Sa</button>
+        </th>
         <td mat-cell *matCellDef="let mitarbeiter">
           <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.sa" />
         </td>
       </ng-container>
 
       <ng-container matColumnDef="So">
-        <th mat-header-cell *matHeaderCellDef> So </th>
+        <th mat-header-cell *matHeaderCellDef>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button color="warn" (click)="soLock=!soLock"
+            *ngIf="soLock">
+            <mat-icon style="margin: 0;">lock</mat-icon>
+          </button>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button (click)="soLock=!soLock"
+            *ngIf="!soLock">So</button>
+        </th>
         <td mat-cell *matCellDef="let mitarbeiter">
           <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchicht.so" />
         </td>
@@ -169,7 +219,8 @@
     </table>
   </div>
   <div #mitzwang *ngIf="zwang">
-    <table #planZwangTable mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="padding-left: 0.5rem;padding-right: 0.5rem;">
+    <table #planZwangTable mat-table [dataSource]="dataSource" class="mat-elevation-z8"
+      style="padding-left: 0.5rem;padding-right: 0.5rem;">
 
       <ng-container matColumnDef="Name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -177,54 +228,102 @@
       </ng-container>
 
       <ng-container matColumnDef="Mo">
-        <th mat-header-cell *matHeaderCellDef> Mo </th>
+        <th mat-header-cell *matHeaderCellDef>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button color="warn" (click)="moLock=!moLock"
+            *ngIf="moLock">
+            <mat-icon style="margin: 0;">lock</mat-icon>
+          </button>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button (click)="moLock=!moLock"
+            *ngIf="!moLock">Mo</button>
+        </th>
         <td mat-cell *matCellDef="let mitarbeiter">
           <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.mo" />
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Di">
-        <th mat-header-cell *matHeaderCellDef> Di </th>
+        <th mat-header-cell *matHeaderCellDef>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button color="warn" (click)="diLock=!diLock"
+            *ngIf="diLock">
+            <mat-icon style="margin: 0;">lock</mat-icon>
+          </button>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button (click)="diLock=!diLock"
+            *ngIf="!diLock">Di</button>
+        </th>
         <td mat-cell *matCellDef="let mitarbeiter">
           <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.di" />
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Mi">
-        <th mat-header-cell *matHeaderCellDef> Mi </th>
+        <th mat-header-cell *matHeaderCellDef>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button color="warn" (click)="miLock=!miLock"
+            *ngIf="miLock">
+            <mat-icon style="margin: 0;">lock</mat-icon>
+          </button>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button (click)="miLock=!miLock"
+            *ngIf="!miLock">Mi</button>
+        </th>
         <td mat-cell *matCellDef="let mitarbeiter">
           <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.mi" />
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Do">
-        <th mat-header-cell *matHeaderCellDef> Do </th>
+        <th mat-header-cell *matHeaderCellDef>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button color="warn" (click)="doLock=!doLock"
+            *ngIf="doLock">
+            <mat-icon style="margin: 0;">lock</mat-icon>
+          </button>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button (click)="doLock=!doLock"
+            *ngIf="!doLock">Do</button>
+        </th>
         <td mat-cell *matCellDef="let mitarbeiter">
           <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.do" />
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Fr">
-        <th mat-header-cell *matHeaderCellDef> Fr </th>
+        <th mat-header-cell *matHeaderCellDef>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button color="warn" (click)="frLock=!frLock"
+            *ngIf="frLock">
+            <mat-icon style="margin: 0;">lock</mat-icon>
+          </button>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button (click)="frLock=!frLock"
+            *ngIf="!frLock">Fr</button>
+        </th>
         <td mat-cell *matCellDef="let mitarbeiter">
           <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.fr" />
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Sa">
-        <th mat-header-cell *matHeaderCellDef> Sa </th>
+        <th mat-header-cell *matHeaderCellDef>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button color="warn" (click)="saLock=!saLock"
+            *ngIf="saLock">
+            <mat-icon style="margin: 0;">lock</mat-icon>
+          </button>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button (click)="saLock=!saLock"
+            *ngIf="!saLock">Sa</button>
+        </th>
         <td mat-cell *matCellDef="let mitarbeiter">
           <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.sa" />
         </td>
       </ng-container>
 
       <ng-container matColumnDef="So">
-        <th mat-header-cell *matHeaderCellDef> So </th>
+        <th mat-header-cell *matHeaderCellDef>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button color="warn" (click)="soLock=!soLock"
+            *ngIf="soLock">
+            <mat-icon style="margin: 0;">lock</mat-icon>
+          </button>
+          <button style="padding: 0;min-width: 32px;" mat-stroked-button (click)="soLock=!soLock"
+            *ngIf="!soLock">So</button>
+        </th>
         <td mat-cell *matCellDef="let mitarbeiter">
           <app-tag-eingeplant-table-entry [eingeplant]="mitarbeiter.tagSchichtZwang.so" />
         </td>
       </ng-container>
-
       <ng-container matColumnDef="Anzahl">
         <th mat-header-cell *matHeaderCellDef> Σ </th>
         <td mat-cell *matCellDef="let mitarbeiter"> {{mitarbeiter.tagSchichtZwangAnzahl}} </td>
